@@ -1,0 +1,165 @@
+/* === GENERAL RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+  color: #111;
+  background-color: #fff;
+}
+
+/* === NAVIGATION === */
+.main-nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  gap: 2rem;
+}
+
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #ddd;
+}
+
+/* === HERO === */
+.hero {
+  background-image: url('../img/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.logo {
+  max-width: 250px;
+  width: 100%;
+}
+
+/* === STATIC TEXT SECTION === */
+.static-text {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  font-size: 1.1rem; /* slightly larger */
+  line-height: 1.6;
+  text-align: center;
+}
+
+.static-text p {
+  font-weight: bold;
+  font-size: 1.3rem; /* emphasized heading */
+}
+
+
+/* === UPDATED CAROUSEL STYLING === */
+.carousel {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-color: black;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Alternate image position */
+.slide.image-left {
+  flex-direction: row;
+}
+
+.slide.image-right {
+  flex-direction: row-reverse;
+}
+
+.slide img {
+  max-height: 100%;
+  max-width: 50%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+
+/* Text styling in the black "dead space" */
+.carousel-text {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 2rem;
+  max-width: 50%;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* === SHOP BANNER === */
+.shop-banner {
+  position: relative;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.shop-banner img {
+  width: 100%;
+  height: auto;
+}
+
+.shop-button {
+  position: absolute;
+  top: 2rem; /* previously: bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.shop-button:hover {
+  background-color: #333;
+}
