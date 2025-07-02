@@ -84,24 +84,42 @@ body {
   overflow: hidden;
 }
 
+/* ✅ Blurred background container */
+.carousel-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px);  /* ✅ Softer blur */
+  opacity: 0.7;
+  z-index: 0;
+}
+
+/* Slide layering on top of the background */
 .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 0;
   width: 100%;
   height: 100%;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  background-color: black;
+  will-change: opacity;  /* ✅ Hint to browser for smoother transition */
   padding: 2rem;
   box-sizing: border-box;
+  background-color: transparent;
 }
 
 .slide.active {
   opacity: 1;
-  z-index: 1;
+  z-index: 2; /* 🔼 Ensures active slide is always on top */
 }
 
 /* Alternate image position */
@@ -125,13 +143,15 @@ body {
 
 /* Text styling in the black "dead space" */
 .carousel-text {
-  color: white;
+  color: black;
   font-size: 1.5rem;
   font-weight: bold;
   padding: 2rem;
   max-width: 50%;
   text-align: center;
   line-height: 1.4;
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
 }
 
 /* === SHOP BANNER === */
