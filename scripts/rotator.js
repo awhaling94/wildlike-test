@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(() => {
     const next = (current + 1) % slides.length;
     showSlide(next);
-  }, 8000);
+  }, 4500);
 });
 
 
