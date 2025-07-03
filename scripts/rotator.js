@@ -1,55 +1,56 @@
 document.addEventListener("DOMContentLoaded", function () {
   const slides = document.querySelectorAll(".slide");
-  const bg = document.querySelector(".carousel-bg");
+  const bgA = document.querySelector(".carousel-bg-a");
+  const bgB = document.querySelector(".carousel-bg-b");
   let current = 0;
+  let showingA = true;
   let isTransitioning = false;
 
   function showSlide(index) {
-    if (isTransitioning) return; // prevent overlap
+    if (isTransitioning) return;
     isTransitioning = true;
 
     const prevSlide = slides[current];
     const nextSlide = slides[index];
     const nextImg = nextSlide.querySelector("img");
 
-    // 1. Fade out current slide
     prevSlide.classList.remove("active");
 
-    // 2. Start background fade-out after slide disappears
+    // Wait for slide to fade out
     setTimeout(() => {
-      bg.style.transition = "opacity 1s ease-in-out";
-      bg.style.opacity = 0;
+      // Toggle background layers
+      const newBg = showingA ? bgB : bgA;
+      const oldBg = showingA ? bgA : bgB;
 
-      // 3. Change background image after it's hidden
+      newBg.style.backgroundImage = `url(${nextImg.src})`;
+      newBg.classList.add("active");
+      oldBg.classList.remove("active");
+
+      showingA = !showingA;
+
+      // After background crossfade, fade in slide
       setTimeout(() => {
-        bg.style.backgroundImage = `url(${nextImg.src})`;
+        nextSlide.classList.add("active");
+        current = index;
+        isTransitioning = false;
+      }, 1000); // match bg fade time
 
-        // 4. Fade background back in
-        setTimeout(() => {
-          bg.style.opacity = 0.3;
-
-          // 5. Fade in next slide
-          setTimeout(() => {
-            nextSlide.classList.add("active");
-            current = index;
-            isTransitioning = false;
-          }, 1000); // wait for background to fade in
-        }, 100); // slight delay to ensure image is swapped
-      }, 1000); // wait for background to fade out
     }, 1000); // wait for slide to fade out
   }
 
-  // === Start ===
-  const initialImg = slides[current].querySelector("img");
-  if (initialImg) {
-    bg.style.backgroundImage = `url(${initialImg.src})`;
+  // === Init first slide and background
+  const firstImg = slides[current].querySelector("img");
+  if (firstImg) {
+    bgA.style.backgroundImage = `url(${firstImg.src})`;
+    bgA.classList.add("active");
   }
   slides[current].classList.add("active");
 
-  // === Timer ===
+  // === Loop
   setInterval(() => {
     const next = (current + 1) % slides.length;
     showSlide(next);
-  }, 8000); // adjust cycle duration here
+  }, 8000);
 });
+
 
