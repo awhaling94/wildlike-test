@@ -93,12 +93,12 @@ body {
   height: 100%;
   background-size: cover;
   background-position: center;
-  filter: blur(3px);  /* ✅ Softer blur */
+  filter: blur(3px); /* softer blur */
   opacity: 0.7;
   z-index: 0;
+  transition: opacity 2s ease-in-out;
 }
 
-/* Slide layering on top of the background */
 .slide {
   position: absolute;
   top: 0;
@@ -111,16 +111,17 @@ body {
   height: 100%;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  will-change: opacity;  /* ✅ Hint to browser for smoother transition */
+  will-change: opacity;
   padding: 2rem;
-  box-sizing: border-box;
   background-color: transparent;
+  box-sizing: border-box;
 }
 
 .slide.active {
   opacity: 1;
-  z-index: 2; /* 🔼 Ensures active slide is always on top */
+  z-index: 2;
 }
+
 
 /* Alternate image position */
 .slide.image-left {
