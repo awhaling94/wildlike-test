@@ -2,19 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Shop | Wildlike</title>
-  <link rel="stylesheet" href="../assets/css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop - Wildlike</title>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
 </head>
 <body>
-  <h2>Shop</h2>
-  <div class="product-grid">
+
+  <!-- === NAVIGATION + LOGO === -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="../">Home</a></li>
+      <li><a href="../shop/">Shop</a></li>
+      <li><a href="../cart/">Cart</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="https://www.instagram.com/wildlike.shop" target="_blank">Instagram</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <img src="../assets/img/logo.png" alt="Wildlike Logo" class="logo" />
+  </header>
+
+  <!-- === SHOP GRID === -->
+  <section class="product-grid">
     <div class="product">
-      <img src="../assets/img/sample.jpg" alt="Sample Product">
-      <h3>Sample Product</h3>
-      <p>$30</p>
-      <button onclick="addToCart('Sample Product', 30)">Add to Cart</button>
+      <a href="cragosaurus.html">
+        <div class="product-image" data-images='[
+        "../assets/img/products/cragosaurus_1.jpg", 
+        "../assets/img/products/cragosaurus_2.jpg",
+        "../assets/img/products/cragosaurus_3.jpg"
+        "../assets/img/products/cragosaurus_4.jpg", 
+        "../assets/img/products/cragosaurus_5.jpg",
+        "../assets/img/products/cragosaurus_6.jpg", 
+        "../assets/img/products/vapor_sizing.jpg"
+        ]'>
+          <img src="../assets/img/products/cragosaurus_1.jpg" alt="cragosaurus">
+        </div>
+        <div class="product-info">
+          <h3>Cragosaurus Rex Solar Long Sleeve</h3>
+          <p>$30.00</p>
+        </div>
+      </a>
     </div>
-  </div>
-  <script src="../scripts/cart.js"></script>
+
+    <div class="product">
+      <a href="wwbear.html">
+        <div class="product-image" data-images='[
+        "../assets/img/products/wwbear_1.jpg", 
+        "../assets/img/products/wwbear_2.jpg"
+        "../assets/img/products/wwbear_3.jpg", 
+        "../assets/img/products/wwbear_4.jpg"
+        "../assets/img/products/wwbear_5.jpg"
+        "../assets/img/products/vapor_sizing.jpg" 
+        ]'>
+          <img src="../assets/img/products/wwbear_1.jpg" alt="wwbear">
+        </div>
+        <div class="product-info">
+          <h3>WW Bear Solar Long Sleeve</h3>
+          <p>$42.00</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Add more products here -->
+  </section>
+
+  <!-- === SHOP BANNER === -->
+  <section class="shop-banner">
+    <img src="../assets/img/banner.jpg" alt="Shop Banner">
+    <a href="../" class="shop-button">Back to Home</a>
+  </section>
+
+  <script src="../scripts/shop-rotator.js"></script>
 </body>
 </html>

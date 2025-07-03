@@ -93,7 +93,7 @@ body {
   height: 100%;
   background-size: cover;
   background-position: center;
-  filter: blur(3px);
+  filter: blur(2px);
   opacity: 0;
   z-index: 0;
   transition: opacity 1s ease-in-out;
@@ -187,4 +187,46 @@ body {
 
 .shop-button:hover {
   background-color: #333;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.product:hover {
+  transform: scale(1.03);
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+  transition: opacity 0.5s ease;
+}
+
+.product-info {
+  padding: 1rem;
+}
+
+.product-info h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.product-info p {
+  font-weight: bold;
+  color: #333;
 }
