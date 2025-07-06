@@ -1,0 +1,53 @@
+{
+  "cragosaurus": {
+    "XXS": 5,
+    "XS": 5,
+    "S": 5,
+    "M": 5,
+    "L": 5,
+    "XL": 5
+  },
+  "wwbear": {
+    "XXS": 5,
+    "XS": 5,
+    "S": 5,
+    "M": 5,
+    "L": 5,
+    "XL": 5
+  },
+  "snakebike": {
+    "XXS": 5,
+    "XS": 5,
+    "S": 5,
+    "M": 5,
+    "L": 5,
+    "XL": 5
+  },
+  "wildlike-stickers": {
+    "One Size": 5
+  },
+  "climb-retro": {
+    "XXS": 5,
+    "XS": 5,
+    "S": 5,
+    "M": 5,
+    "L": 5,
+    "XL": 5
+  },
+  "hike-ozarks": {
+    "XXS": 5,
+    "XS": 5,
+    "S": 5,
+    "M": 0,
+    "L": 5,
+    "XL": 5
+  },
+  "land-of-riches": {
+    "XXS": 5,
+    "XS": 5,
+    "S": 5,
+    "M": 5,
+    "L": 5,
+    "XL": 5
+  }
+}

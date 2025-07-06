@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cragosaurus Rex Solar Long Sleeve - Wildlike</title>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <style>
+    /* === Navigation Bar === */
+    .main-nav {
+      display: flex;
+      justify-content: center;
+      background-color: #fff;
+      padding: 1em 0;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2em;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: black;
+      font-weight: 600;
+      padding: 0.5em 1em;
+    }
+
+    /* === Top White Banner with Logo === */
+    .top-banner {
+      background-color: #fff;
+      padding: 5em 0 1em;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .top-banner img.logo {
+      height: 90px;
+      max-width: 100%;
+    }
+
+    .top-banner a {
+      display: inline-block;
+    }
+
+    .product-page {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 2em;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 2em;
+    }
+
+    .product-images {
+    flex: 1 1 400px;
+    position: relative;
+    height: 400px; /* Set consistent height */
+    overflow: hidden;
+    }
+
+    .product-images img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    z-index: 0;
+    }
+
+    .product-images img.active {
+    opacity: 1;
+    z-index: 1;
+    }
+
+    .image-nav {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 2;
+    padding: 0 0.5em;
+    pointer-events: none; /* allows clicks to pass through where no button exists */
+    }
+
+    .image-nav button {
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: #fff;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    pointer-events: auto; /* re-enable click on buttons */
+    border-radius: 4px;
+    font-size: 1.2em;
+    }
+
+
+    .product-details {
+      flex: 1 1 300px;
+    }
+
+    .product-details h1 {
+      margin-top: 0;
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    .product-details .price {
+      font-weight: bold;
+      font-size: 1.25em;
+      margin: 0.5em 0 1em;
+    }
+
+    .product-details button {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 0.75em 1.5em;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .shop-banner {
+      padding: 1em 0;
+      text-align: center;
+      margin-top: 3em;
+    }
+
+    .shop-banner img {
+      max-width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    .shop-button {
+      display: inline-block;
+      margin-top: 1em;
+      background: black;
+      color: white;
+      padding: 0.75em 2em;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .main-nav ul {
+        flex-direction: column;
+        gap: 1em;
+      }
+
+      .product-page {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- === Navigation Tabs === -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="../shop/">Shop</a></li>
+      <li><a href="../cart/">Cart</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="https://www.instagram.com/wildlike.shop" target="_blank">Instagram</a></li>
+    </ul>
+  </nav>
+
+  <!-- === White Banner with Logo === -->
+  <div class="top-banner">
+    <a href="../">
+      <img src="../assets/img/logo.png" alt="Wildlike Logo" class="logo" />
+    </a>
+  </div>
+
+  <!-- === Product Page Layout === -->
+  <section class="product-page">
+    <!-- Rotating Image Section -->
+    <div class="product-images">
+    <img src="../assets/img/products/hikeozks_1.png" alt="Front" class="active">
+    <img src="../assets/img/products/hikeozks_2.jpg" alt="Back">
+    <img src="../assets/img/products/hikeozks_3.png" alt="Detail">
+    <img src="../assets/img/products/hikeozks_4.jpg" alt="Action">
+    <img src="../assets/img/products/hikeozks_5.jpg" alt="Action">
+    <div class="image-nav">
+        <button onclick="prevImage()">&#8592; Prev</button>
+        <button onclick="nextImage()">Next &#8594;</button>
+    </div>
+    </div>
+
+
+    <!-- Product Description & Button -->
+  <div class="product-details">
+    <h1>Explore the Ozarks</h1>
+    <p class="price">$45.00</p>
+    <p>
+      Wildlike was founded in the Ozarks. The Eye of the Needle hike is a fan favorite for locals and newcomers alike, and this shirt will be too! 
+    </p>
+    <p><strong>Fabric:</strong> 100% polyester</p>
+    <p><strong>Activity:</strong> Ideal for a cool weather fall hike or sunny day</p>
+    <p><strong>Sizing:</strong> Unisex fit – <a href="../assets/img/products/vapor_sizing.jpg" target="_blank" style="color:black; text-decoration:underline;">see sizing chart here</a></p>
+    <p><strong>Color:</strong> Light Heather Gray</p>
+
+    <form id="productForm" onsubmit="handleAddToCart(event)">
+      <label for="size">Size:</label>
+      <select id="size" name="size" required>
+        <option value="">Loading sizes...</option>
+      </select>
+
+      <label for="quantity" style="margin-left:1em;">Quantity:</label>
+      <select id="quantity" name="quantity" required disabled>
+        <option value="">Select size first</option>
+      </select>
+
+      <button type="submit" style="margin-left:1em;">Add to Cart</button>
+    </form>
+
+  </div>
+
+  </section>
+
+  <!-- === Bottom Banner === -->
+  <section class="shop-banner">
+    <img src="../assets/img/banner.jpg" alt="Shop Banner">
+    <a href="../shop/" class="shop-button">Shop</a>
+  </section>
+
+  <!-- === Scripts === -->
+  <script src="../scripts/cart.js"></script>
+
+  <!-- Rotating Image Logic -->
+  <script>
+    const images = document.querySelectorAll('.product-images img');
+    let currentImage = 0;
+
+    function showImage(index) {
+      images.forEach(img => img.classList.remove('active'));
+      images[index].classList.add('active');
+    }
+
+    function prevImage() {
+      currentImage = (currentImage - 1 + images.length) % images.length;
+      showImage(currentImage);
+    }
+
+    function nextImage() {
+      currentImage = (currentImage + 1) % images.length;
+      showImage(currentImage);
+    }
+  </script>
+
+  <!-- Product Inventory, Size, Quantity, Add to Cart -->
+  <script>
+    const productAlias = "hike-ozarks";
+    const sizeSelect = document.getElementById("size");
+    const quantitySelect = document.getElementById("quantity");
+
+    let inventory = {};
+    let availableSizes = {};
+
+    fetch("../data/inventory.json")
+      .then(response => response.json())
+      .then(data => {
+        inventory = data;
+        availableSizes = { ...inventory[productAlias] };
+        updateSizeOptions();
+      })
+      .catch(error => {
+        sizeSelect.innerHTML = '<option value="">Error loading sizes</option>';
+        console.error("Error loading inventory:", error);
+      });
+
+    function updateSizeOptions() {
+      sizeSelect.innerHTML = '<option value="">Select Size</option>';
+      Object.entries(availableSizes).forEach(([size, qty]) => {
+        const option = document.createElement("option");
+        option.value = size;
+        option.textContent = qty > 0 ? `${size} (${qty} left)` : `${size} (Sold Out)`;
+        option.disabled = qty === 0;
+        sizeSelect.appendChild(option);
+      });
+    }
+
+    sizeSelect.addEventListener("change", () => {
+      const selectedSize = sizeSelect.value;
+      const maxQty = availableSizes[selectedSize] || 0;
+
+      quantitySelect.innerHTML = "";
+      if (!selectedSize || maxQty === 0) {
+        quantitySelect.disabled = true;
+        quantitySelect.innerHTML = '<option value="">Select size first</option>';
+        return;
+      }
+
+      quantitySelect.disabled = false;
+      for (let i = 1; i <= maxQty; i++) {
+        const opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = i;
+        quantitySelect.appendChild(opt);
+      }
+    });
+
+    function handleAddToCart(event) {
+      event.preventDefault();
+
+      const size = sizeSelect.value;
+      const quantity = parseInt(quantitySelect.value, 10);
+
+      if (!size || !quantity || quantity === 0) {
+        alert("Please select both size and quantity.");
+        return;
+      }
+
+      const name = "Explore the Ozarks Long Sleeve";
+      const price = 45.00;
+
+      addToCart(name, price, size, quantity);
+
+      // Decrement available inventory in current session
+      availableSizes[size] -= quantity;
+      updateSizeOptions();
+
+      if (availableSizes[size] <= 0) {
+        sizeSelect.value = "";
+        quantitySelect.innerHTML = '<option value="">Select size first</option>';
+        quantitySelect.disabled = true;
+      } else {
+        sizeSelect.dispatchEvent(new Event("change"));
+      }
+    }
+  </script>
+
+</body>
+</html>

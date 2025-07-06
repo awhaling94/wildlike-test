@@ -1,8 +1,9 @@
-function addToCart(name, price) {
+function addToCart(name, price, size = null, quantity = 1) {
   const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-  cart.push({ name, price });
+  cart.push({ name, price, size, quantity });
   localStorage.setItem("cart", JSON.stringify(cart));
-  alert(`${name} added to cart.`);
+  const label = size ? `${quantity} x ${name} (Size: ${size})` : `${quantity} x ${name}`;
+  alert(`${label} added to cart.`);
 }
 
 function displayCart() {
