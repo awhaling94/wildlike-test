@@ -5,13 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shop - Wildlike</title>
   <link rel="stylesheet" href="../assets/css/style.css"/>
+  <style>
+    /* === Navigation Bar === */
+    .main-nav {
+      display: flex;
+      justify-content: center;
+      background-color: #fff;
+      padding: 1em 0;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2em;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: black;
+      font-weight: 600;
+      padding: 0.5em 1em;
+    }
+
+    /* === Top White Banner with Logo === */
+    .top-banner {
+      background-color: #fff;
+      padding: 5em 0 1em;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .top-banner img.logo {
+      height: 90px;
+      max-width: 100%;
+    }
+
+    .top-banner a {
+      display: inline-block;
+    }
+
+    /* === Product Grid (3-column layout) === */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2em;
+      padding: 2em;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product {
+      text-align: center;
+    }
+
+    .product-image img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .product-info h3 {
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 0.5em;
+    }
+
+    .product-info p {
+      margin: 0.2em 0 0;
+    }
+
+    .product a {
+      text-decoration: none;
+    }
+
+    /* === Bottom Banner === */
+    .shop-banner {
+      padding: 1em 0;
+      text-align: center;
+    }
+
+    .shop-banner img {
+      max-width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .main-nav ul {
+        flex-direction: column;
+        gap: 1em;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- === NAVIGATION + LOGO === -->
+  <!-- === Navigation Tabs === -->
   <nav class="main-nav">
     <ul>
-      <li><a href="../">Home</a></li>
       <li><a href="../shop/">Shop</a></li>
       <li><a href="../cart/">Cart</a></li>
       <li><a href="#">Blog</a></li>
@@ -19,11 +116,14 @@
     </ul>
   </nav>
 
-  <header class="hero">
-    <img src="../assets/img/logo.png" alt="Wildlike Logo" class="logo" />
-  </header>
+  <!-- === White Banner with Logo === -->
+  <div class="top-banner">
+    <a href="../">
+      <img src="../assets/img/logo.png" alt="Wildlike Logo" class="logo" />
+    </a>
+  </div>
 
-  <!-- === SHOP GRID === -->
+  <!-- === Product Grid === -->
   <section class="product-grid">
     <div class="product">
       <a href="cragosaurus.html">
@@ -64,10 +164,68 @@
       </a>
     </div>
 
-    <!-- Add more products here -->
+    <div class="product">
+      <a href="snakebike.html">
+        <div class="product-image">
+          <img src="../assets/img/products/snakebike_1.jpg" alt="snakebike">
+        </div>
+        <div class="product-info">
+          <h3>Snakebike Tee</h3>
+          <p>$28.00</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="product">
+      <a href="wildlike-stickers.html">
+        <div class="product-image">
+          <img src="../assets/img/products/stickers_1.jpg" alt="wildlike stickers">
+        </div>
+        <div class="product-info">
+          <h3>Wildlike Sticker Pack</h3>
+          <p>$6.00</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="product">
+      <a href="climb-retro.html">
+        <div class="product-image">
+          <img src="../assets/img/products/climbretro_1.jpg" alt="climb retro">
+        </div>
+        <div class="product-info">
+          <h3>Climb Retro Comic 3/4 Sleeve</h3>
+          <p>$34.00</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="product">
+      <a href="hike-ozarks.html">
+        <div class="product-image">
+          <img src="../assets/img/products/hikeozarks_1.jpg" alt="hike ozarks">
+        </div>
+        <div class="product-info">
+          <h3>Hike the Ozarks Tee</h3>
+          <p>$28.00</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="product">
+      <a href="land-of-riches.html">
+        <div class="product-image">
+          <img src="../assets/img/products/landriches_1.jpg" alt="land of riches">
+        </div>
+        <div class="product-info">
+          <h3>Land of Riches Long Sleeve</h3>
+          <p>$36.00</p>
+        </div>
+      </a>
+    </div>
   </section>
 
-  <!-- === SHOP BANNER === -->
+  <!-- === Bottom Banner === -->
   <section class="shop-banner">
     <img src="../assets/img/banner.jpg" alt="Shop Banner">
     <a href="../" class="shop-button">Back to Home</a>
