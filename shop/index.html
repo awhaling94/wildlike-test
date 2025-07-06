@@ -122,6 +122,18 @@
     }
   </style>
 </head>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const grid = document.querySelector(".product-grid");
+    const products = Array.from(grid.querySelectorAll(".product"));
+
+    const sorted = products.sort((a, b) => {
+      return parseInt(a.dataset.order) - parseInt(b.dataset.order);
+    });
+
+    sorted.forEach(product => grid.appendChild(product));
+  });
+</script>
 <body>
 
   <!-- === Navigation Tabs === -->
@@ -143,7 +155,7 @@
 
   <!-- === Product Grid === -->
   <section class="product-grid">
-    <div class="product">
+    <div class="product" data-order="4">
       <a href="cragosaurus.html">
         <div class="product-image" data-images='[
         "../assets/img/products/cragosaurus_1.jpg", 
@@ -162,7 +174,7 @@
       </a>
     </div>
 
-    <div class="product">
+    <div class="product" data-order="5">
       <a href="wwbear.html">
         <div class="product-image" data-images='[
         "../assets/img/products/wwbear_1.jpg", 
@@ -180,7 +192,7 @@
       </a>
     </div>
 
-    <div class="product">
+    <div class="product" data-order="6">
       <a href="snakebike.html">
         <div class="product-image" data-images='[
         "../assets/img/products/snakebike_1.jpg", 
@@ -197,7 +209,7 @@
       </a>
     </div>
 
-    <div class="product">
+    <div class="product" data-order="7">
       <a href="wildlike-stickers.html">
         <div class="product-image" data-images='[
         "../assets/img/products/stickers.jpg"
@@ -211,7 +223,7 @@
       </a>
     </div>
 
-    <div class="product">
+    <div class="product" data-order="1">
       <a href="climb-retro.html">
         <div class="product-image" data-images='[
         "../assets/img/products/climbretro_1.jpg", 
@@ -229,7 +241,7 @@
       </a>
     </div>
 
-    <div class="product">
+    <div class="product" data-order="2">
       <a href="hike-ozarks.html">
         <div class="product-image" data-images='[
         "../assets/img/products/hikeozks_1.png", 
@@ -247,7 +259,7 @@
       </a>
     </div>
 
-    <div class="product">
+    <div class="product" data-order="3">
       <a href="land-of-riches.html">
         <div class="product-image" data-images='[
         "../assets/img/products/richland_1.png", 
