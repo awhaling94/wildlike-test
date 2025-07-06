@@ -155,17 +155,6 @@
       font-weight: bold;
     }
 
-    @media (max-width: 768px) {
-      .main-nav ul {
-        flex-direction: column;
-        gap: 1em;
-      }
-
-      .product-page {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
   </style>
 </head>
 <body>
@@ -195,6 +184,8 @@
     <img src="../assets/img/products/cragosaurus_2.jpg" alt="Back">
     <img src="../assets/img/products/cragosaurus_3.jpg" alt="Detail">
     <img src="../assets/img/products/cragosaurus_4.jpg" alt="Action">
+    <img src="../assets/img/products/cragosaurus_5.jpg" alt="Action">
+    <img src="../assets/img/products/cragosaurus_6.jpg" alt="Action">
     <div class="image-nav">
         <button onclick="prevImage()">&#8592; Prev</button>
         <button onclick="nextImage()">Next &#8594;</button>
@@ -203,18 +194,33 @@
 
 
     <!-- Product Description & Button -->
-    <div class="product-details">
-      <h1>Cragosaurus Rex Solar Long Sleeve</h1>
-      <p class="price">$30.00</p>
-      <p>
-        The Cragosaurus tee brings Jurassic power to your climbing kit. Designed for sun protection and high-output movement, this long sleeve combines performance fabric with original artwork printed in lasting dyes.
-      </p>
-      <p><strong>Fabric:</strong> Lightweight, moisture-wicking, UPF 50+</p>
-      <p><strong>Sizing:</strong> Unisex fit – <a href="../assets/img/products/vapor_sizing.jpg" target="_blank" style="color:black; text-decoration:underline;">see sizing chart here</a></p>
-      <p><strong>Color:</strong> Light Heather Gray</p>
+  <div class="product-details">
+    <h1>Cragosaurus Rex Solar Long Sleeve</h1>
+    <p class="price">$30.00</p>
+    <p>
+      The “Cragosaurus Rex” design is inspired by climbers for climbers. It’s printed on Vapor Apparel’s Solar Performance Long Sleeve which offers performance qualities you will love. 
+    </p>
+    <p><strong>Fabric:</strong> 100% polyester, UPF 50+ solar protection, Made with PURE-tech™ cool wicking technology</p>
+    <p><strong>Activity:</strong> Lightweight and comfortable fabric, ideal for indoor or outdoor climbing</p>
+    <p><strong>Sizing:</strong> Unisex fit – <a href="../assets/img/products/vapor_sizing.jpg" target="_blank" style="color:black; text-decoration:underline;">see sizing chart here</a></p>
+    <p><strong>Color:</strong> Light yellow</p>
 
-      <button onclick="addToCart('Cragosaurus Rex Solar Long Sleeve', 30.00)">Add to Cart</button>
-    </div>
+    <form id="productForm" onsubmit="handleAddToCart(event)">
+      <label for="size">Size:</label>
+      <select id="size" name="size" required>
+        <option value="">Loading sizes...</option>
+      </select>
+
+      <label for="quantity" style="margin-left:1em;">Quantity:</label>
+      <select id="quantity" name="quantity" required disabled>
+        <option value="">Select size first</option>
+      </select>
+
+      <button type="submit" style="margin-left:1em;">Add to Cart</button>
+    </form>
+
+  </div>
+
   </section>
 
   <!-- === Bottom Banner === -->
@@ -225,8 +231,9 @@
 
   <!-- === Scripts === -->
   <script src="../scripts/cart.js"></script>
+
+  <!-- Rotating Image Logic -->
   <script>
-    // Simple image rotator logic
     const images = document.querySelectorAll('.product-images img');
     let currentImage = 0;
 
@@ -245,5 +252,88 @@
       showImage(currentImage);
     }
   </script>
+
+  <!-- Product Inventory, Size, Quantity, Add to Cart -->
+  <script>
+    const productAlias = "cragosaurus";
+    const sizeSelect = document.getElementById("size");
+    const quantitySelect = document.getElementById("quantity");
+
+    let inventory = {};
+    let availableSizes = {};
+
+    fetch("../data/inventory.json")
+      .then(response => response.json())
+      .then(data => {
+        inventory = data;
+        availableSizes = { ...inventory[productAlias] };
+        updateSizeOptions();
+      })
+      .catch(error => {
+        sizeSelect.innerHTML = '<option value="">Error loading sizes</option>';
+        console.error("Error loading inventory:", error);
+      });
+
+    function updateSizeOptions() {
+      sizeSelect.innerHTML = '<option value="">Select Size</option>';
+      Object.entries(availableSizes).forEach(([size, qty]) => {
+        const option = document.createElement("option");
+        option.value = size;
+        option.textContent = qty > 0 ? `${size} (${qty} left)` : `${size} (Sold Out)`;
+        option.disabled = qty === 0;
+        sizeSelect.appendChild(option);
+      });
+    }
+
+    sizeSelect.addEventListener("change", () => {
+      const selectedSize = sizeSelect.value;
+      const maxQty = availableSizes[selectedSize] || 0;
+
+      quantitySelect.innerHTML = "";
+      if (!selectedSize || maxQty === 0) {
+        quantitySelect.disabled = true;
+        quantitySelect.innerHTML = '<option value="">Select size first</option>';
+        return;
+      }
+
+      quantitySelect.disabled = false;
+      for (let i = 1; i <= maxQty; i++) {
+        const opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = i;
+        quantitySelect.appendChild(opt);
+      }
+    });
+
+    function handleAddToCart(event) {
+      event.preventDefault();
+
+      const size = sizeSelect.value;
+      const quantity = parseInt(quantitySelect.value, 10);
+
+      if (!size || !quantity || quantity === 0) {
+        alert("Please select both size and quantity.");
+        return;
+      }
+
+      const name = "Cragosaurus Rex Solar Long Sleeve";
+      const price = 30.00;
+
+      addToCart(name, price, size, quantity);
+
+      // Decrement available inventory in current session
+      availableSizes[size] -= quantity;
+      updateSizeOptions();
+
+      if (availableSizes[size] <= 0) {
+        sizeSelect.value = "";
+        quantitySelect.innerHTML = '<option value="">Select size first</option>';
+        quantitySelect.disabled = true;
+      } else {
+        sizeSelect.dispatchEvent(new Event("change"));
+      }
+    }
+  </script>
+
 </body>
 </html>
