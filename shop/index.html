@@ -61,11 +61,29 @@
       text-align: center;
     }
 
-    .product-image img {
+    .product-image {
+      position: relative;
       width: 100%;
-      max-height: 300px;
-      object-fit: cover;
+      height: 300px; /* Fixed height ensures no layout shift */
+      overflow: hidden;
       border-radius: 6px;
+    }
+
+    .product-image img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      z-index: 0;
+    }
+
+    .product-image img.active {
+      opacity: 1;
+      z-index: 1;
     }
 
     .product-info h3 {
@@ -112,7 +130,7 @@
       <li><a href="../">Home</a></li>
       <li><a href="../cart/">Cart</a></li>
       <li><a href="#">Blog</a></li>
-      <li><a href="https://www.instagram.com/wildlike.shop" target="_blank">Instagram</a></li>
+      <li><a href="https://www.instagram.com/wildlike.shop" target="_blank">Insta</a></li>
     </ul>
   </nav>
 
@@ -130,11 +148,10 @@
         <div class="product-image" data-images='[
         "../assets/img/products/cragosaurus_1.jpg", 
         "../assets/img/products/cragosaurus_2.jpg",
-        "../assets/img/products/cragosaurus_3.jpg"
+        "../assets/img/products/cragosaurus_3.jpg",
         "../assets/img/products/cragosaurus_4.jpg", 
         "../assets/img/products/cragosaurus_5.jpg",
-        "../assets/img/products/cragosaurus_6.jpg", 
-        "../assets/img/products/vapor_sizing.jpg"
+        "../assets/img/products/cragosaurus_6.jpg"
         ]'>
           <img src="../assets/img/products/cragosaurus_1.jpg" alt="cragosaurus">
         </div>
@@ -149,49 +166,61 @@
       <a href="wwbear.html">
         <div class="product-image" data-images='[
         "../assets/img/products/wwbear_1.jpg", 
-        "../assets/img/products/wwbear_2.jpg"
+        "../assets/img/products/wwbear_2.jpg",
         "../assets/img/products/wwbear_3.jpg", 
-        "../assets/img/products/wwbear_4.jpg"
+        "../assets/img/products/wwbear_4.jpg",
         "../assets/img/products/wwbear_5.jpg"
-        "../assets/img/products/vapor_sizing.jpg" 
         ]'>
           <img src="../assets/img/products/wwbear_1.jpg" alt="wwbear">
         </div>
         <div class="product-info">
           <h3>WW Bear Solar Long Sleeve</h3>
-          <p>$42.00</p>
+          <p>$30.00</p>
         </div>
       </a>
     </div>
 
     <div class="product">
       <a href="snakebike.html">
-        <div class="product-image">
-          <img src="../assets/img/products/snakebike_1.jpg" alt="snakebike">
+        <div class="product-image" data-images='[
+        "../assets/img/products/snakebike_1.jpg", 
+        "../assets/img/products/snakebike_2.jpg",
+        "../assets/img/products/snakebike_3.jpg", 
+        "../assets/img/products/snakebike_4.jpg"
+        ]'>
+          <img src="../assets/img/products/snakebike_1.jpg" alt="wwbear">
         </div>
         <div class="product-info">
-          <h3>Snakebike Tee</h3>
-          <p>$28.00</p>
+          <h3>Snakebike Solar Long Sleeve</h3>
+          <p>$30.00</p>
         </div>
       </a>
     </div>
 
     <div class="product">
       <a href="wildlike-stickers.html">
-        <div class="product-image">
-          <img src="../assets/img/products/stickers_1.jpg" alt="wildlike stickers">
+        <div class="product-image" data-images='[
+        "../assets/img/products/stickers.jpg"
+        ]'>
+          <img src="../assets/img/products/stickers.jpg" alt="wildlike-stickers">
         </div>
         <div class="product-info">
-          <h3>Wildlike Sticker Pack</h3>
-          <p>$6.00</p>
+          <h3>Wildlike Sticker</h3>
+          <p>$3.00</p>
         </div>
       </a>
     </div>
 
     <div class="product">
       <a href="climb-retro.html">
-        <div class="product-image">
-          <img src="../assets/img/products/climbretro_1.jpg" alt="climb retro">
+        <div class="product-image" data-images='[
+        "../assets/img/products/climbretro_1.jpg", 
+        "../assets/img/products/climbretro_2.png",
+        "../assets/img/products/climbretro_3.jpg", 
+        "../assets/img/products/climbretro_4.png",
+        "../assets/img/products/climbretro_5.jpg"
+        ]'>
+          <img src="../assets/img/products/climbretro_1.jpg" alt="wwbear">
         </div>
         <div class="product-info">
           <h3>Climb Retro Comic 3/4 Sleeve</h3>
@@ -202,8 +231,14 @@
 
     <div class="product">
       <a href="hike-ozarks.html">
-        <div class="product-image">
-          <img src="../assets/img/products/hikeozarks_1.jpg" alt="hike ozarks">
+        <div class="product-image" data-images='[
+        "../assets/img/products/hikeozks_1.png", 
+        "../assets/img/products/hikeozks_2.jpg",
+        "../assets/img/products/hikeozks_3.png", 
+        "../assets/img/products/hikeozks_4.jpg",
+        "../assets/img/products/hikeozks_5.jpg"
+        ]'>
+          <img src="../assets/img/products/hikeozks_1.png" alt="hike_the_ozarks">
         </div>
         <div class="product-info">
           <h3>Hike the Ozarks Tee</h3>
@@ -214,8 +249,14 @@
 
     <div class="product">
       <a href="land-of-riches.html">
-        <div class="product-image">
-          <img src="../assets/img/products/landriches_1.jpg" alt="land of riches">
+        <div class="product-image" data-images='[
+        "../assets/img/products/richland_1.png", 
+        "../assets/img/products/richland_2.jpg",
+        "../assets/img/products/richland_3.jpg", 
+        "../assets/img/products/richland_4.jpg",
+        "../assets/img/products/richland_5.jpg"
+        ]'>
+          <img src="../assets/img/products/richland_1.png" alt="land_of_riches">
         </div>
         <div class="product-info">
           <h3>Land of Riches Long Sleeve</h3>
