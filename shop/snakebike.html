@@ -39,8 +39,11 @@
     }
 
     .top-banner img.logo {
-      height: 90px;
-      max-width: 100%;
+      height: auto;
+      width: auto;
+      max-height: 90px;
+      max-width: 80%; /* or whatever makes sense for your layout */
+      object-fit: contain;
     }
 
     .top-banner a {
@@ -203,18 +206,18 @@
     <p><strong>Sizing:</strong> Unisex fit – <a href="../assets/img/products/vapor_sizing.jpg" target="_blank" style="color:black; text-decoration:underline;">see sizing chart here</a></p>
     <p><strong>Color:</strong> High-viz green ideal for wooded trails</p>
 
-    <form id="productForm" onsubmit="handleAddToCart(event)">
+    <form id="productForm" onsubmit="handleAddToCart(event)" style="display: flex; flex-direction: column; gap: 1em; max-width: 250px;">
       <label for="size">Size:</label>
       <select id="size" name="size" required>
         <option value="">Loading sizes...</option>
       </select>
 
-      <label for="quantity" style="margin-left:1em;">Quantity:</label>
+      <label for="quantity">Quantity:</label>
       <select id="quantity" name="quantity" required disabled>
         <option value="">Select size first</option>
       </select>
 
-      <button type="submit" style="margin-left:1em;">Add to Cart</button>
+      <button type="submit">Add to Cart</button>
     </form>
 
   </div>
