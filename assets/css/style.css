@@ -5,6 +5,13 @@
   box-sizing: border-box;
 }
 
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+  .slide {
+    padding: 0;                /* Avoid extra vertical spacing */
+  }
+}
+
 body {
   font-family: sans-serif;
   line-height: 1.6;
