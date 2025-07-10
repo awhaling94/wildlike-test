@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Snakebike Solar Long Sleeve - Wildlike</title>
+  <title>Climb! Retro - Wildlike</title>
   <link rel="stylesheet" href="../assets/css/style.css"/>
   <style>
     /* === Navigation Bar === */
@@ -157,7 +157,7 @@
       border-radius: 5px;
       font-weight: bold;
     }
-
+    
     /* === Fullscreen Image Modal === */
     .fullscreen-modal {
       display: none;
@@ -215,10 +215,11 @@
   <section class="product-page">
     <!-- Rotating Image Section -->
     <div class="product-images">
-    <img src="../assets/img/products/snakebike_1.jpg" alt="Front" class="active">
-    <img src="../assets/img/products/snakebike_2.jpg" alt="Back">
-    <img src="../assets/img/products/snakebike_3.jpg" alt="Detail">
-    <img src="../assets/img/products/snakebike_4.jpg" alt="Action">
+    <img src="../assets/img/products/climbretro_1.jpg" alt="Front" class="active">
+    <img src="../assets/img/products/climbretro_2.png" alt="Back">
+    <img src="../assets/img/products/climbretro_3.jpg" alt="Detail">
+    <img src="../assets/img/products/climbretro_4.png" alt="Action">
+    <img src="../assets/img/products/climbretro_5.jpg" alt="Action">
     <div class="image-nav">
         <button onclick="prevImage()">&#8592; Prev</button>
         <button onclick="nextImage()">Next &#8594;</button>
@@ -228,15 +229,15 @@
 
     <!-- Product Description & Button -->
   <div class="product-details">
-    <h1>Snakebike Solar Long Sleeve</h1>
-    <p class="price">$30.00</p>
+    <h1>Climb! Retro comic book 3/4 sleeve</h1>
+    <p class="price">$45.00</p>
     <p>
-      The “Snakebike” design is inspired by mountain bikers for mountain bikers. It’s printed on Vapor Apparel’s Solar Performance Long Sleeve which offers performance qualities you will love.
+      Every adventure tells a story—wear this retro comic book-inspired shirt on your next climb or around town, and let it spark epic tales among you and your friends. Whether scaling new heights or just hanging out, this bold design brings the thrill of the climb to life, making it the perfect piece for any occasion. 
     </p>
-    <p><strong>Fabric:</strong> 100% polyester, UPF 50+ solar protection, Made with PURE-tech™ cool wicking technology</p>
-    <p><strong>Activity:</strong> Lightweight and comfortable fabric, ideal for long rides</p>
-    <p><strong>Sizing:</strong> Unisex fit – <a href="../assets/img/products/vapor_sizing.jpg" target="_blank" style="color:black; text-decoration:underline;">see sizing chart here</a></p>
-    <p><strong>Color:</strong> High-viz green ideal for wooded trails</p>
+    <p><strong>Fabric:</strong>100% polyester</p>
+    <p><strong>Activity:</strong>Wicks sweat, dries fast, and moves with you—perfect for long sessions and full range of motion. 3/4 sleeves offer coverage without getting in the way.</p>
+    <p><strong>Sizing:</strong>Unisex fit. Sizing tip: Men’s sizing is generally true to size, women are advised to size one down. Evan is 6’2” and wearing a size X-Large.</p>
+    <p><strong>Color:</strong>White and black color block</p>
 
     <form id="productForm" onsubmit="handleAddToCart(event)" style="display: flex; flex-direction: column; gap: 1em; max-width: 250px;">
       <label for="size">Size:</label>
@@ -294,7 +295,7 @@
 
   <!-- Product Inventory, Size, Quantity, Add to Cart -->
   <script>
-    const productAlias = "snakebike";
+    const productAlias = "climb-retro";
     const sizeSelect = document.getElementById("size");
     const quantitySelect = document.getElementById("quantity");
 
@@ -355,8 +356,8 @@
         return;
       }
 
-      const name = "WW Bear Solar Long Sleeve";
-      const price = 30.00;
+      const name = "Climb! Retro comic book 3/4 sleeve";
+      const price = 40.00;
 
       addToCart(name, price, size, quantity);
 
