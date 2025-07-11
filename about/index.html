@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - Wildlike</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    /* === Top White Banner with Logo === */
+    .top-banner {
+      background-color: #fff;
+      padding: 5em 0 1em;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .top-banner img.logo {
+      height: auto;
+      width: auto;
+      max-height: 90px;
+      max-width: 80%; /* or whatever makes sense for your layout */
+      object-fit: contain;
+    }
+
+    .top-banner a {
+      display: inline-block;
+    }
+    /* === About Section Layout === */
+    .about-section {
+    padding: 3em 2em;
+    max-width: 1200px;
+    margin: auto;
+    }
+
+    .about-text {
+    max-width: none;
+    }
+
+    .about-text h2 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+    }
+
+    .about-text p {
+      line-height: 1.6;
+      font-size: 1em;
+    }
+
+    .about-image {
+      flex: 1 1 300px;
+      max-width: 400px;
+      display: flex;
+      align-items: flex-start; /* aligns top of image with top of text */
+    }
+
+    .about-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .about-text p {
+        line-height: 1.6;
+        font-size: 1em;
+        margin-bottom: 1.5em; /* Adds space between paragraphs */
+    }
+
+    .float-image {
+        float: right;
+        margin-left: 2em;
+        margin-bottom: 1em;
+        max-width: 400px; /* increase as needed (e.g. 400–500px) */
+        width: 40%; /* optional: helps scale with screen */
+        border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+    .float-image {
+        float: none;
+        display: block;
+        margin: 1em auto;
+        width: 80%;
+        max-width: 100%;
+    }
+    }
+
+    /* === Bottom Banner === */
+    .shop-banner {
+      padding: 1em 0;
+      text-align: center;
+    }
+
+    .shop-banner img {
+      max-width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- === Navigation Tabs === -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="../">Home</a></li>
+      <li><a href="../shop/">Shop</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="https://www.instagram.com/wildlike.shop" target="_blank">Insta</a></li>
+      <li><a href="../cart/">Cart</a></li>
+    </ul>
+  </nav>
+
+  <!-- === White Banner with Centered Logo (same as shop page) === -->
+  <div class="top-banner">
+    <a href="../">
+      <img src="../assets/img/logo.png" alt="Wildlike Logo" class="logo" />
+    </a>
+  </div>
+
+  <!-- === About Content Section === -->
+    <section class="about-section">
+    <div class="about-text">
+        <h2>From heartland to horizon.</h2>
+
+        <!-- Moved image inside the text block -->
+        <img src="../assets/img/about-me.jpg" alt="Photo of Amanda Whaling" class="float-image" />
+
+        <p>
+        Welcome to Wildlike, a woman-owned self-startup dedicated to celebrating the wild spirit of outdoor athletes through art-infused apparel. My name is Amanda Whaling, and my journey into this venture began when I relocated from the heartland of Indiana to Arkansas. Among the trails, mountains, and rivers of the natural state, I discovered a new home that brought my sense of adventure to new horizons and deepened my love for all wild spaces. These experiences ignited a passion within me to blend my love for the outdoors with my artistic flair, giving birth to a brand that celebrates the adrenaline-fueled adventures of outdoor enthusiasts.
+        </p>
+        <p>
+        All shirts feature my original artwork inspired by the raw energy and perseverance of outdoor athletes who keep it wild out there. Each design is a testament to the grit and determination it takes to push boundaries and conquer new heights.
+        </p>
+        <p>
+        But it's not just about the thrill of the journey; it's about representation and empowerment. I firmly believe in the power of visibility, especially for female athletes in the outdoor community. As a proud Girl Scout alumna, I carry with me the words of a fellow scout: "If they don't see it, they won't be it." This mantra drives me to create designs that inspire girls to shred mountain bike trails, scale mountains, and send the rivers—because when they see themselves represented, they are emboldened to chase their dreams fearlessly.
+        </p>
+        <p>
+        At Wildlike, we are more than just a clothing brand; we are a movement. A movement that champions diversity, inclusivity, and the unyielding spirit of those who dare to venture beyond the norm. Join us in celebrating the wild, embracing the challenge, and paving the way for a future where every outdoor athlete feels seen, heard, and empowered.
+        </p>
+        <p>
+        <strong>Thank you for being a part of our journey. Together, let's keep it wild out there.</strong>
+        </p>
+    </div>
+    </section>
+
+  <!-- === Bottom Banner === -->
+  <section class="shop-banner">
+    <img src="../assets/img/banner.jpg" alt="Shop Banner">
+    <a href="../" class="shop-button">Back to Home</a>
+  </section>
+
+</body>
+</html>
