@@ -19,36 +19,6 @@ body {
   background-color: #fff;
 }
 
-/* === NAVIGATION === */
-.main-nav {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  padding-top: 1rem;
-}
-
-.main-nav .nav-container {
-  background-color: rgba(0, 0, 0, 0.4); /* semi-transparent black */
-  border-radius: 10px;
-  padding: 0.2rem;
-  backdrop-filter: blur(4px); /* optional: adds subtle blur behind */
-}
-
-.main-nav ul {
-  display: flex;
-  flex-wrap: wrap; /* fallback for small screens */
-  justify-content: center;
-  gap: .5em;
-  padding: 0;
-  list-style: none;
-  margin: 1em;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
 .main-nav li a {
   display: inline-block;
   padding: 0.5em 0.75em;
