@@ -44,7 +44,7 @@ body {
   background-image: url('../img/hero.jpg');
   background-size: cover;
   background-position: center;
-  height: 40vh;
+  height: 60vh;
   display: flex;
   align-items: flex-end;  /* Align children (logo) to the bottom */
   justify-content: center; /* Center horizontally */
