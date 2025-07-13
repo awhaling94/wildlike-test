@@ -31,7 +31,7 @@ body {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.5rem;
   transition: color 0.3s ease;
 }
 
@@ -44,15 +44,17 @@ body {
   background-image: url('../img/hero.jpg');
   background-size: cover;
   background-position: center;
-  height: 70vh;
+  height: 40vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;  /* Align children (logo) to the bottom */
+  justify-content: center; /* Center horizontally */
   position: relative;
+  padding-bottom: 2em; /* Adds spacing above the bottom edge */
 }
 
+/* Logo styling */
 .logo {
-  max-width: 250px;
+  max-width: 150px;
   width: 100%;
 }
 
@@ -68,7 +70,7 @@ body {
 
 .static-text p {
   font-weight: bold;
-  font-size: 1.3rem; /* emphasized heading */
+  font-size: 1.1rem; /* emphasized heading */
 }
 
 
