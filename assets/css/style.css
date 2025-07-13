@@ -44,12 +44,12 @@ body {
   background-image: url('../img/hero.jpg');
   background-size: cover;
   background-position: center;
-  height: 60vh;
+  height: 40vh;
   display: flex;
   align-items: flex-end;  /* Align children (logo) to the bottom */
   justify-content: center; /* Center horizontally */
   position: relative;
-  padding-bottom: 2em; /* Adds spacing above the bottom edge */
+  padding-bottom: .25em; /* Adds spacing above the bottom edge */
 }
 
 /* Logo styling */
