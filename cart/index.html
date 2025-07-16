@@ -11,5 +11,12 @@
   <button onclick="generateOrderTicket()">Generate Order Ticket</button>
   <pre id="ticketOutput"></pre>
   <script src="../scripts/cart.js"></script>
+  <!-- Load EmailJS SDK -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("MiiUnkV-qfsnOaT-S"); // Replace with your actual EmailJS user ID
+    })();
+  </script>
 </body>
 </html>

@@ -317,8 +317,8 @@
   document.getElementById('add-to-cart').addEventListener('click', () => {
     const qty = parseInt(document.getElementById('quantity').value);
     if (qty > 0) {
-      const name = 'Wildlike Sticker';
-      const price = 3.00;
+      const name = document.querySelector(".product-details h1").textContent.trim();
+      const price = parseFloat(document.querySelector(".price").textContent.replace("$", ""));
       const cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
       for (let i = 0; i < qty; i++) {

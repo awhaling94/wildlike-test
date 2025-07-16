@@ -354,10 +354,10 @@
         return;
       }
 
-      const name = "WW Bear Solar Long Sleeve";
-      const price = 30.00;
+      const name = document.querySelector(".product-details h1").textContent.trim();
+      const price = parseFloat(document.querySelector(".price").textContent.replace("$", ""));
 
-      addToCart(name, price, size, quantity);
+      addToCart(name, price, size, quantity, productAlias);
 
       // Decrement available inventory in current session
       availableSizes[size] -= quantity;

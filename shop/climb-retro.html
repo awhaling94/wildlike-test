@@ -355,10 +355,10 @@
         return;
       }
 
-      const name = "Climb! Retro comic book 3/4 sleeve";
-      const price = 40.00;
+      const name = document.querySelector(".product-details h1").textContent.trim();
+      const price = parseFloat(document.querySelector(".price").textContent.replace("$", ""));
 
-      addToCart(name, price, size, quantity);
+      addToCart(name, price, size, quantity, productAlias);
 
       // Decrement available inventory in current session
       availableSizes[size] -= quantity;

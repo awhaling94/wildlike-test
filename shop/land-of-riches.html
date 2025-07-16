@@ -357,11 +357,11 @@
         return;
       }
 
-      const name = "Land of Riches Long Sleeve";
-      const price = 35.00;
+      const name = document.querySelector(".product-details h1").textContent.trim();
+      const price = parseFloat(document.querySelector(".price").textContent.replace("$", ""));
 
-      addToCart(name, price, size, quantity);
-
+      addToCart(name, price, size, quantity, productAlias);
+      
       // Decrement available inventory in current session
       availableSizes[size] -= quantity;
       updateSizeOptions();
