@@ -71,7 +71,7 @@ function generateOrderTicket() {
           const name = this.firstName.value;
           const email = this.email.value;
 
-          emailjs.send("WildlikeService", "OrderRequest", {
+          emailjs.send("service_j77c4fx", "template_gswufw3", {
             name: name,
             email: email,
             ticket_text: \`${ticketText}\`,
