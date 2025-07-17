@@ -44,30 +44,28 @@ function generateOrderTicket() {
     `${i + 1}. ${item.name} (Size: ${item.size || "N/A"}, Qty: ${item.quantity}) - $${item.price}`
   ).join("\n");
 
-  document.getElementById("ticketPreview").innerText = `${ticketText}\n\nSubtotal: $${subtotal.toFixed(2)}`;
-  document.getElementById("orderContainer").style.display = "block";
+  const fullMessage = `${ticketText}\n\nSubtotal: $${subtotal.toFixed(2)}\n\n(Shipping and tax calculated after Wildlike confirms your order.)`;
 
-  const form = document.getElementById("orderForm");
-  form.onsubmit = function(e) {
-    e.preventDefault();
-    const name = form.firstName.value;
-    const email = form.email.value;
+  const emailSubject = encodeURIComponent("New Order Request from Wildlike Shop");
+  const emailBody = encodeURIComponent(`Hello Wildlike,\n\nI'd like to place the following order:\n\n${fullMessage}`);
+  const mailtoLink = `mailto:wildlike@gmail.com?subject=${emailSubject}&body=${emailBody}`;
 
-    emailjs.send("service_j77c4fx", "template_gswufw3", {
-      name: name,
-      email: email,
-      ticket_text: ticketText,
-      subtotal: subtotal.toFixed(2)
-    }).then(function(response) {
-      document.getElementById('confirmationMessage').innerText =
-        'Your order request was successfully submitted! Please look out for an email from Wildlike (wildlike@gmail.com) for confirmation and payment instructions.';
-      localStorage.removeItem("cart");
-      displayCart();
-    }, function(error) {
-      alert('Error submitting order. Please try again later.');
-      console.error("EmailJS error", error);
-    });
-  };
+  const popup = window.open("", "_blank", "width=600,height=650");
+  popup.document.write(`
+    <html><head><title>Order Summary</title></head>
+    <body style="font-family:sans-serif;padding:1em;">
+      <h2>Your Order Summary</h2>
+      <pre>${fullMessage}</pre>
+      <hr/>
+      <p>To submit your order, click the button below to open your email app with this request pre-filled. Then just hit “Send.”</p>
+      <p><a href="${mailtoLink}" style="display:inline-block;padding:0.75em 1em;background:#007BFF;color:#fff;text-decoration:none;border-radius:4px;">Email Order Request</a></p>
+      <p style="margin-top:1em;font-size:0.9em;color:#555;">(If the email doesn’t open automatically, copy and paste the above summary into an email to <strong>wildlike.orders@gmail.com</strong>.)</p>
+    </body></html>
+  `);
+  popup.document.close();
+
+  // Clear the cart
+  localStorage.removeItem("cart");
 }
 
 function removeFromCart(index) {
