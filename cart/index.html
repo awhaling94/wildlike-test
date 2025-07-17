@@ -8,6 +8,16 @@
 <body>
   <h2>Your Cart</h2>
   <div id="cart"></div>
+  <div id="orderContainer" style="margin-top: 2em; display: none;">
+    <h3>Order Summary</h3>
+    <pre id="ticketPreview"></pre>
+    <form id="orderForm">
+      <label>First Name:<br/><input type="text" name="firstName" required /></label><br/><br/>
+      <label>Email:<br/><input type="email" name="email" required /></label><br/><br/>
+      <button type="submit">Submit Order Request</button>
+    </form>
+    <div id="confirmationMessage" style="margin-top:1em;color:green;"></div>
+  </div>
   <button onclick="generateOrderTicket()">Generate Order Ticket</button>
   <pre id="ticketOutput"></pre>
   <script src="../scripts/cart.js"></script>

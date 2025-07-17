@@ -44,50 +44,30 @@ function generateOrderTicket() {
     `${i + 1}. ${item.name} (Size: ${item.size || "N/A"}, Qty: ${item.quantity}) - $${item.price}`
   ).join("\n");
 
-  const popup = window.open("", "_blank", "width=600,height=650");
-  popup.document.write(`
-    <html><head><title>Order Summary</title></head>
-    <body style="font-family:sans-serif;padding:1em;">
-      <h2>Order Summary</h2>
-      <pre>${ticketText}</pre>
-      <p><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
-      <p style="font-style: italic;">(Shipping and tax calculated after Wildlike confirms your order.)</p>
-      <hr/>
-      <form id="orderForm">
-        <label>First Name:<br/><input type="text" name="firstName" required /></label><br/><br/>
-        <label>Email:<br/><input type="email" name="email" required /></label><br/><br/>
-        <button type="submit">Submit Order Request</button>
-      </form>
-      <div id="confirmationMessage" style="margin-top:1em;color:green;"></div>
+  document.getElementById("ticketPreview").innerText = `${ticketText}\n\nSubtotal: $${subtotal.toFixed(2)}`;
+  document.getElementById("orderContainer").style.display = "block";
 
-      <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-      <script>
-        (function() {
-          emailjs.init("MiiUnkV-qfsnOaT-S"); // Replace with your EmailJS Public Key
-        })();
+  const form = document.getElementById("orderForm");
+  form.onsubmit = function(e) {
+    e.preventDefault();
+    const name = form.firstName.value;
+    const email = form.email.value;
 
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-          e.preventDefault();
-          const name = this.firstName.value;
-          const email = this.email.value;
-
-          emailjs.send("service_j77c4fx", "template_gswufw3", {
-            name: name,
-            email: email,
-            ticket_text: \`${ticketText}\`,
-            subtotal: ${subtotal.toFixed(2)}
-          }).then(function(response) {
-            document.getElementById('confirmationMessage').innerText = 
-              'Your order request was successfully submitted! Please look out for an email from Wildlike (wildlike@gmail.com) for confirmation and payment instructions.';
-            localStorage.removeItem("cart");
-          }, function(error) {
-            alert('Error submitting order. Please try again later.');
-          });
-        });
-      </script>
-    </body></html>
-  `);
-  popup.document.close();
+    emailjs.send("service_j77c4fx", "template_gswufw3", {
+      name: name,
+      email: email,
+      ticket_text: ticketText,
+      subtotal: subtotal.toFixed(2)
+    }).then(function(response) {
+      document.getElementById('confirmationMessage').innerText =
+        'Your order request was successfully submitted! Please look out for an email from Wildlike (wildlike@gmail.com) for confirmation and payment instructions.';
+      localStorage.removeItem("cart");
+      displayCart();
+    }, function(error) {
+      alert('Error submitting order. Please try again later.');
+      console.error("EmailJS error", error);
+    });
+  };
 }
 
 function removeFromCart(index) {
