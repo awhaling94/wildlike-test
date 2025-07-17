@@ -48,7 +48,7 @@ function generateOrderTicket() {
 
   const emailSubject = encodeURIComponent("New Order Request from Wildlike Shop");
   const emailBody = encodeURIComponent(`Hello Wildlike,\n\nI'd like to place the following order:\n\n${fullMessage}`);
-  const mailtoLink = `mailto:wildlike@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+  const mailtoLink = `mailto:wildlike.orders@gmail.com?subject=${emailSubject}&body=${emailBody}`;
 
   const popup = window.open("", "_blank", "width=600,height=650");
   popup.document.write(`
