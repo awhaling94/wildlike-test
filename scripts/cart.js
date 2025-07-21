@@ -73,7 +73,6 @@ function displayCart() {
     <p style="font-style: italic;">(Shipping and tax calculated after Wildlike confirms your order.)</p>
   `;
 }
-
 function generateOrderTicket() {
   const cart = JSON.parse(localStorage.getItem("cart") || "[]");
   if (cart.length === 0) {
@@ -81,7 +80,6 @@ function generateOrderTicket() {
     return;
   }
 
-  // Generate a unique order ID starting with '25'
   const generateOrderId = async () => {
     const prefix = '25';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -98,7 +96,6 @@ function generateOrderTicket() {
       } while (existingOrders.includes(orderId));
       return orderId;
     } catch (e) {
-      // If file is missing or fetch fails, just return a new ID
       return generateRandomId();
     }
   };
@@ -109,10 +106,12 @@ function generateOrderTicket() {
       `${i + 1}. ${item.name} (Size: ${item.size || "N/A"}, Qty: ${item.quantity}) - $${item.price}`
     ).join("\n");
 
-    const fullMessage = `Order ID: ${orderId}\n\n${ticketText}\n\nSubtotal: $${subtotal.toFixed(2)}\n\n(Shipping and tax calculated after Wildlike confirms your order.)`;
+    const displayMessage = `Order ID: ${orderId}\n\n${ticketText}\n\nSubtotal: $${subtotal.toFixed(2)}\n\n(Shipping and tax calculated after Wildlike confirms your order.)`;
+
+    const fullCopyText = `Send the following order summary below this line to wildlike.orders@gmail.com\n---------------------------------------------------------------------------\n\n${displayMessage}`;
 
     const emailSubject = encodeURIComponent(`New Order Request: ${orderId}`);
-    const emailBody = encodeURIComponent(`Hello Wildlike,\n\nI'd like to place the following order:\n\n${fullMessage}`);
+    const emailBody = encodeURIComponent(`Hello Wildlike,\n\nI'd like to place the following order:\n\n${displayMessage}`);
     const mailtoLink = `mailto:wildlike.orders@gmail.com?subject=${emailSubject}&body=${emailBody}`;
 
     const popup = window.open("", "_blank", "width=600,height=700");
@@ -131,6 +130,24 @@ function generateOrderTicket() {
               text-decoration: none;
               border-radius: 4px;
               margin-top: 1em;
+              border: none;
+              cursor: pointer;
+            }
+            .copy-btn {
+              font-size: 0.8em;
+              padding: 0.4em 0.75em;
+              background: #ccc;
+              color: #333;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+              margin-left: auto;
+            }
+            .header-row {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 0.5em;
             }
             pre { white-space: pre-wrap; }
           </style>
@@ -139,20 +156,35 @@ function generateOrderTicket() {
           <div style="text-align:center;">
             <img class="logo" src="../assets/img/logo.png" alt="Wildlike Logo" />
           </div>
-          <h2>Order Summary - ${orderId}</h2>
-          <pre>${fullMessage}</pre>
+          <div class="header-row">
+            <h2 style="margin:0;">Order Summary - ${orderId}</h2>
+            <button onclick="copyOrderText()" class="copy-btn">Copy</button>
+          </div>
+          <pre>${displayMessage}</pre>
           <hr/>
           <p>To submit your order, click the button below to open your email app with this request pre-filled. Then just hit “Send.”</p>
-          <p><a href="${mailtoLink}" class="email-btn">Email Order Request</a></p>
-          <p style="margin-top:1em;font-size:0.9em;color:#555;">
-            (If the email doesn’t open automatically, copy and paste the above summary into an email to <strong>wildlike.orders@gmail.com</strong>.)
+          <p>
+            <a href="${mailtoLink}" class="email-btn">Email Order Request</a>
           </p>
+          <p style="margin-top:1em;font-size:0.9em;color:#555;">
+            If the email doesn't open automatically, you can copy and paste the summary above into an email addressed to:
+            <br/><strong>wildlike.orders@gmail.com</strong>
+          </p>
+          <textarea id="orderText" style="position:absolute;left:-9999px;">${fullCopyText}</textarea>
+          <script>
+            function copyOrderText() {
+              const textArea = document.getElementById("orderText");
+              textArea.select();
+              textArea.setSelectionRange(0, 99999);
+              document.execCommand("copy");
+              alert("Order summary copied to clipboard.");
+            }
+          </script>
         </body>
       </html>
     `);
     popup.document.close();
 
-    // Clear the cart
     localStorage.removeItem("cart");
   });
 }
