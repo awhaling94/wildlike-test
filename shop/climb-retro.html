@@ -306,8 +306,19 @@
       .then(data => {
         inventory = data;
         availableSizes = { ...inventory[productAlias] };
+
+        // Subtract items in the cart from availableSizes
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        cart.forEach(item => {
+          if (item.slug === productAlias && item.size in availableSizes) {
+            availableSizes[item.size] -= item.quantity;
+            if (availableSizes[item.size] < 0) availableSizes[item.size] = 0;
+          }
+        });
+
         updateSizeOptions();
       })
+      
       .catch(error => {
         sizeSelect.innerHTML = '<option value="">Error loading sizes</option>';
         console.error("Error loading inventory:", error);
