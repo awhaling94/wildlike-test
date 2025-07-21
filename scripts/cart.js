@@ -1,7 +1,19 @@
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  const countSpan = document.getElementById("cart-count");
+  if (countSpan) {
+    countSpan.textContent = totalItems;
+    countSpan.style.display = totalItems > 0 ? "inline-block" : "none";
+  }
+}
+
 function addToCart(name, price, size = null, quantity = 1, slug = "") {
   const cart = JSON.parse(localStorage.getItem("cart") || "[]");
   cart.push({ name, price, size, quantity, slug });
   localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
 
   const label = size ? `${quantity} x ${name} (Size: ${size})` : `${quantity} x ${name}`;
 
@@ -193,9 +205,11 @@ function removeFromCart(index) {
   const cart = JSON.parse(localStorage.getItem("cart") || "[]");
   cart.splice(index, 1);
   localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
   displayCart();
 }
 
 if (document.getElementById("cart")) {
   displayCart();
 }
+updateCartCount();
