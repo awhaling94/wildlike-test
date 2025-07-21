@@ -2,10 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Cart | Wildlike</title>
-  <link rel="stylesheet" href="../assets/css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart - Wildlike</title>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <style>
+    /* === Navigation Bar === */
+    .main-nav {
+      display: flex;
+      justify-content: center;
+      background-color: #fff;
+      padding: 1em 0;
+    }
+
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2em;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: black;
+      font-weight: 600;
+      padding: 0.5em 1em;
+    }
+
+    /* === Top White Banner with Logo === */
+    .top-banner {
+      background-color: #fff;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .top-banner img.logo {
+      max-height: 90px;
+      max-width: 80%;
+      object-fit: contain;
+    }
+  </style>
 </head>
 <body>
+  <!-- === Navigation Tabs === -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="../shop/">Shop</a></li>
+      <li><a href="../about/">About</a></li>
+      <li><a href="../blog/">Blog</a></li>
+      <li><a href="https://www.instagram.com/wildlike.shop" target="_blank">Insta</a></li>
+    </ul>
+  </nav>
+
+  <!-- === White Banner with Centered Logo (same as shop page) === -->
+  <div class="top-banner">
+    <a href="../">
+      <img src="../assets/img/logo.png" alt="Wildlike Logo" class="logo" />
+    </a>
+  </div>
+
   <h2>Your Cart</h2>
   <div id="cart"></div>
   <div id="orderContainer" style="margin-top: 2em; display: none;">
