@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Wildlike Sticker - Wildlike</title>
+  <title>Wildike Sticker - Wildlike</title>
   <link rel="stylesheet" href="../assets/css/style.css"/>
   <style>
     /* === Navigation Bar === */
@@ -106,7 +106,7 @@
       font-size: 1em;
       margin-bottom: 1em; /* Adds space between paragraphs */
     }
-    
+
     .product-details {
       flex: 1 1 300px;
     }
@@ -236,8 +236,6 @@
         <button onclick="nextImage()">Next &#8594;</button>
     </div>
     </div>
-
-
     <!-- Product Description & Button -->
     <div class="product-details" data-alias="wildlike-stickers">
       <h1>Wildlike Sticker</h1>
@@ -246,12 +244,21 @@
         Represent Wildlike wherever you go with holographic stickers! Each one measures approx. 3 x 2.5 in.
       </p>
 
-      <label for="quantity">Quantity:</label>
-      <select id="quantity"></select>
-      <br><br>
+    <form id="productForm" onsubmit="handleAddToCart(event)" style="display: flex; flex-direction: column; gap: 1em; max-width: 250px;">
+      <label for="size">Size:</label>
+      <select id="size" name="size" required>
+        <option value="">Loading sizes...</option>
+      </select>
 
-      <button id="add-to-cart" disabled>Add to Cart</button>
-    </div>
+      <label for="quantity">Quantity:</label>
+      <select id="quantity" name="quantity" required disabled>
+        <option value="">Select size first</option>
+      </select>
+
+      <button type="submit">Add to Cart</button>
+    </form>
+
+  </div>
 
   </section>
 
@@ -269,8 +276,9 @@
 
   <!-- === Scripts === -->
   <script src="../scripts/cart.js"></script>
+
+  <!-- Rotating Image Logic -->
   <script>
-    // Simple image rotator logic
     const images = document.querySelectorAll('.product-images img');
     let currentImage = 0;
 
@@ -289,61 +297,99 @@
       showImage(currentImage);
     }
   </script>
+
+  <!-- Product Inventory, Size, Quantity, Add to Cart -->
   <script>
-  const alias = document.querySelector(".product-details").dataset.alias;
-  let maxQty = 0;
+    const productAlias = "wildlike-stickers";
+    const sizeSelect = document.getElementById("size");
+    const quantitySelect = document.getElementById("quantity");
 
-  fetch('../data/inventory.json')
-    .then(res => res.json())
-    .then(data => {
-      const qtyDropdown = document.getElementById('quantity');
-      const addToCartBtn = document.getElementById('add-to-cart');
-      const productData = data[alias];
+    let inventory = {};
+    let availableSizes = {};
 
-      if (!productData) {
-        qtyDropdown.innerHTML = `<option>Sold out</option>`;
-        addToCartBtn.disabled = true;
-        console.error(`No entry for alias "${alias}" in inventory.`);
+
+    fetch("../data/inventory.json")
+      .then(response => response.json())
+      .then(data => {
+        inventory = data;
+        availableSizes = { ...inventory[productAlias] };
+
+        // Subtract items in the cart from availableSizes
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        cart.forEach(item => {
+          if (item.slug === productAlias && item.size in availableSizes) {
+            availableSizes[item.size] -= item.quantity;
+            if (availableSizes[item.size] < 0) availableSizes[item.size] = 0;
+          }
+        });
+
+        updateSizeOptions();
+      })
+      
+      .catch(error => {
+        sizeSelect.innerHTML = '<option value="">Error loading sizes</option>';
+        console.error("Error loading inventory:", error);
+      });
+
+    function updateSizeOptions() {
+      sizeSelect.innerHTML = '<option value="">Select Size</option>';
+      Object.entries(availableSizes).forEach(([size, qty]) => {
+        const option = document.createElement("option");
+        option.value = size;
+        option.textContent = qty > 0 ? `${size} (${qty} left)` : `${size} (Sold Out)`;
+        option.disabled = qty === 0;
+        sizeSelect.appendChild(option);
+      });
+    }
+
+    sizeSelect.addEventListener("change", () => {
+      const selectedSize = sizeSelect.value;
+      const maxQty = availableSizes[selectedSize] || 0;
+
+      quantitySelect.innerHTML = "";
+      if (!selectedSize || maxQty === 0) {
+        quantitySelect.disabled = true;
+        quantitySelect.innerHTML = '<option value="">Select size first</option>';
         return;
       }
 
-      // Handle single-size item like stickers
-      const sizes = Object.keys(productData);
-      if (sizes.length === 1) {
-        const size = sizes[0];
-        const inventory = productData[size];
-
-        if (inventory === 0) {
-          qtyDropdown.innerHTML = `<option>Sold out</option>`;
-          addToCartBtn.disabled = true;
-        } else {
-          qtyDropdown.disabled = false;
-          addToCartBtn.disabled = false;
-          qtyDropdown.innerHTML = Array.from({ length: inventory }, (_, i) =>
-            `<option value="${i + 1}">${i + 1}</option>`
-          ).join('');
-        }
-      } else {
-        // You can extend this to show a size selector as well
-        console.warn("Multiple sizes detected — consider adding a size dropdown.");
+      quantitySelect.disabled = false;
+      for (let i = 1; i <= maxQty; i++) {
+        const opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = i;
+        quantitySelect.appendChild(opt);
       }
     });
 
-  document.getElementById('add-to-cart').addEventListener('click', () => {
-    const qty = parseInt(document.getElementById('quantity').value);
-    if (qty > 0) {
-      const name = document.querySelector(".product-details h1").textContent.trim();
-      const price = parseFloat(document.querySelector(".price").textContent.replace("$", ""));
-      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    function handleAddToCart(event) {
+      event.preventDefault();
 
-      for (let i = 0; i < qty; i++) {
-        cart.push({ name, price });
+      const size = sizeSelect.value;
+      const quantity = parseInt(quantitySelect.value, 10);
+
+      if (!size || !quantity || quantity === 0) {
+        alert("Please select both size and quantity.");
+        return;
       }
 
-      localStorage.setItem("cart", JSON.stringify(cart));
-      alert(`${qty} × ${name} added to cart.`);
+      const name = document.querySelector(".product-details h1").textContent.trim();
+      const price = parseFloat(document.querySelector(".price").textContent.replace("$", ""));
+
+      addToCart(name, price, size, quantity, productAlias);
+
+      // Decrement available inventory in current session
+      availableSizes[size] -= quantity;
+      updateSizeOptions();
+
+      if (availableSizes[size] <= 0) {
+        sizeSelect.value = "";
+        quantitySelect.innerHTML = '<option value="">Select size first</option>';
+        quantitySelect.disabled = true;
+      } else {
+        sizeSelect.dispatchEvent(new Event("change"));
+      }
     }
-  });
   </script>
 
   <script>
