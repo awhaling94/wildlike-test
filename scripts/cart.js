@@ -141,7 +141,28 @@ function generateOrderTicket() {
           <meta charset="UTF-8">
           <title>Order Summary</title>
           <style>
-            body { font-family: sans-serif; padding: 1em; }
+            body {
+              font-family: sans-serif;
+              padding: 1em;
+              font-size: 1.05em;
+              line-height: 1.5;
+            }
+
+            @media (max-width: 600px) {
+              body {
+                font-size: 1.15em;
+              }
+
+              .email-btn,
+              .copy-btn {
+                font-size: 1em;
+                padding: 0.75em 1.25em;
+              }
+
+              pre {
+                font-size: 1em;
+              }
+            }
             img.logo { max-width: 200px; margin-bottom: 1em; }
             .email-btn {
               display: inline-block;
