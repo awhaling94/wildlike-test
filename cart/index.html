@@ -41,6 +41,22 @@
       max-width: 80%;
       object-fit: contain;
     }
+
+    .contact-overlay {
+      position: absolute;
+      bottom: 25px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9em;
+      color: white;
+      background: rgba(0, 0, 0, 0.4); /* subtle overlay background */
+      padding: 0.5em 0;
+    }
+
+    .contact-overlay a {
+      color: #a8d8ff;
+      text-decoration: underline;
+    }
     
   </style>
 </head>
@@ -77,12 +93,8 @@
   <button onclick="generateOrderTicket()">Generate Order Ticket</button>
   <pre id="ticketOutput"></pre>
   <script src="../scripts/cart.js"></script>
-  <!-- Load EmailJS SDK -->
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    (function(){
-      emailjs.init("O11D3BvlJ2dmpNt1r"); // Replace with your actual EmailJS user ID
-    })();
-  </script>
+  <div class="contact-overlay">
+    Questions or need help? <strong>Email us</strong> at <a href="mailto:wildlike.orders@gmail.com">wildlike.orders@gmail.com</a>
+  </div>
 </body>
 </html>
