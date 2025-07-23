@@ -150,23 +150,23 @@ function generateOrderTicket() {
 
             @media (max-width: 600px) {
               body {
-                font-size: 1.15em;
+                font-size: 1.25em;
               }
 
               .email-btn,
               .copy-btn {
-                font-size: 1em;
-                padding: 0.75em 1.25em;
+                font-size: 2em;
+                padding: 1.75em 1.25em;
               }
 
               pre {
-                font-size: 1em;
+                font-size: 2em;
               }
             }
             img.logo { max-width: 200px; margin-bottom: 1em; }
             .email-btn {
               display: inline-block;
-              padding: 0.75em 1em;
+              padding: 1.75em 1.25em;
               background: #007BFF;
               color: #fff;
               text-decoration: none;
@@ -184,8 +184,8 @@ function generateOrderTicket() {
               margin-bottom: 1em;
             }
             .copy-btn {
-              padding: 0.3em 0.6em;
-              font-size: 0.85em;
+              padding: 0.5em 1em;
+              font-size: 2em;
               border: none;
               background-color: #eee;
               color: #333;
