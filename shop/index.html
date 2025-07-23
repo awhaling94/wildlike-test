@@ -108,6 +108,22 @@
       object-fit: cover;
     }
 
+    .contact-overlay {
+      position: absolute;
+      bottom: 25px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9em;
+      color: white;
+      background: rgba(0, 0, 0, 0.4); /* subtle overlay background */
+      padding: 0.5em 0;
+    }
+
+    .contact-overlay a {
+      color: #a8d8ff;
+      text-decoration: underline;
+    }
+
   </style>
 </head>
 <script>
@@ -285,6 +301,9 @@
   <section class="shop-banner">
     <img src="../assets/img/banner.jpg" alt="Shop Banner">
     <a href="../" class="shop-button">Back to Home</a>
+    <div class="contact-overlay">
+      Need help? <strong>Contact support</strong> at <a href="mailto:wildlike.orders@gmail.com">wildlike.orders@gmail.com</a>
+    </div>
   </section>
 
   <script src="../scripts/shop-rotator.js"></script>
