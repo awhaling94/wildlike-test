@@ -85,10 +85,20 @@ function displayCart() {
     <p style="font-style: italic;">(Shipping and tax calculated after Wildlike confirms your order.)</p>
   `;
 }
+
 function generateOrderTicket() {
   const cart = JSON.parse(localStorage.getItem("cart") || "[]");
   if (cart.length === 0) {
     alert("Your cart is empty.");
+    return;
+  }
+
+  // 1. Open a blank popup immediately (sync with user click)
+  const popup = window.open('', '_blank');
+
+  // Fallback if popup is blocked
+  if (!popup) {
+    alert("Popup blocked. Please allow popups for this site.");
     return;
   }
 
@@ -121,7 +131,6 @@ function generateOrderTicket() {
     const displayMessage = `Order ID: ${orderId}\n\n${ticketText}\n\nSubtotal: $${subtotal.toFixed(2)}\n\n(Shipping and tax calculated after Wildlike confirms your order.)`;
 
     const fullCopyText = `Send the following order summary below this line to wildlike.orders@gmail.com\n---------------------------------------------------------------------------\n\n${displayMessage}`;
-
     const emailSubject = encodeURIComponent(`New Order Request: ${orderId}`);
     const emailBody = encodeURIComponent(`Hello Wildlike,\n\nI'd like to place the following order:\n\n${displayMessage}`);
     const mailtoLink = `mailto:wildlike.orders@gmail.com?subject=${emailSubject}&body=${emailBody}`;
@@ -198,16 +207,13 @@ function generateOrderTicket() {
       </html>
     `;
 
-    const blob = new Blob([popupHTML], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-
-    // Create and click a hidden link
-    const a = document.createElement("a");
-    a.href = url;
-    a.target = "_blank";
-    a.click();
+    popup.document.open();
+    popup.document.write(popupHTML);
+    popup.document.close();
 
     localStorage.removeItem("cart");
+    updateCartCount();
+    displayCart();
   });
 }
 
