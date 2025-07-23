@@ -126,10 +126,10 @@ function generateOrderTicket() {
     const emailBody = encodeURIComponent(`Hello Wildlike,\n\nI'd like to place the following order:\n\n${displayMessage}`);
     const mailtoLink = `mailto:wildlike.orders@gmail.com?subject=${emailSubject}&body=${emailBody}`;
 
-    const popup = window.open("", "_blank", "width=600,height=700");
-    popup.document.write(`
+    const popupHTML = `
       <html>
         <head>
+          <meta charset="UTF-8">
           <title>Order Summary</title>
           <style>
             body { font-family: sans-serif; padding: 1em; }
@@ -145,31 +145,33 @@ function generateOrderTicket() {
               border: none;
               cursor: pointer;
             }
-            .copy-btn {
-              font-size: 0.8em;
-              padding: 0.4em 0.75em;
-              background: #ccc;
-              color: #333;
-              border: none;
-              border-radius: 4px;
-              cursor: pointer;
-              margin-left: auto;
-            }
-            .header-row {
+            .order-id-row {
               display: flex;
-              justify-content: space-between;
+              flex-direction: row;
               align-items: center;
-              margin-bottom: 0.5em;
+              justify-content: flex-start;
+              gap: 0.5em;
+              margin-bottom: 1em;
+            }
+            .copy-btn {
+              padding: 0.3em 0.6em;
+              font-size: 0.85em;
+              border: none;
+              background-color: #eee;
+              color: #333;
+              cursor: pointer;
+              border-radius: 4px;
             }
             pre { white-space: pre-wrap; }
           </style>
         </head>
         <body>
           <div style="text-align:center;">
-            <img class="logo" src="../assets/img/logo.png" alt="Wildlike Logo" />
+            <img class="logo" src="https://wildlike.shop/assets/img/logo.png" alt="Wildlike Logo" />
           </div>
-          <div class="header-row">
-            <h2 style="margin:0;">Order Summary - ${orderId}</h2>
+          <h2 style="margin-bottom: 0.5em; text-align: left;">Order Summary</h2>
+          <div class="order-id-row">
+            <span><strong>Order ID:</strong> ${orderId}</span>
             <button onclick="copyOrderText()" class="copy-btn">Copy</button>
           </div>
           <pre>${displayMessage}</pre>
@@ -194,8 +196,16 @@ function generateOrderTicket() {
           </script>
         </body>
       </html>
-    `);
-    popup.document.close();
+    `;
+
+    const blob = new Blob([popupHTML], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+
+    // Create and click a hidden link
+    const a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.click();
 
     localStorage.removeItem("cart");
   });
