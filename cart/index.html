@@ -8,25 +8,31 @@
   <style>
     @media (max-width: 600px) {
       body {
-        font-size: 1.25em;
+        font-size: 1.05em;
       }
 
       h2, h3 {
-        font-size: 1.5em;
+        font-size: 1.4em;
       }
 
-      #cart p,
       #orderContainer label,
       #orderContainer input,
       #orderContainer button,
-      .contact-overlay {
-        font-size: 1.25em;
+      .contact-overlay,
+      #confirmationMessage {
+        font-size: 1.1em;
       }
 
       button {
-        padding: 1.75em 1.25em;
+        padding: 0.75em 1.25em;
+      }
+
+      /* Avoid enlarging item text in cart */
+      #cart p {
+        font-size: 1em; /* stays compact */
       }
     }
+
     /* === Navigation Bar === */
     .main-nav {
       display: flex;

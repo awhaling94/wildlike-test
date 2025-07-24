@@ -144,29 +144,16 @@ function generateOrderTicket() {
             body {
               font-family: sans-serif;
               padding: 1em;
-              font-size: 1.05em;
-              line-height: 1.5;
             }
 
-            @media (max-width: 600px) {
-              body {
-                font-size: 1.25em;
-              }
-
-              .email-btn,
-              .copy-btn {
-                font-size: 2em;
-                padding: 1.75em 1.25em;
-              }
-
-              pre {
-                font-size: 2em;
-              }
+            img.logo {
+              max-width: 200px;
+              margin-bottom: 1em;
             }
-            img.logo { max-width: 200px; margin-bottom: 1em; }
+
             .email-btn {
               display: inline-block;
-              padding: 1.75em 1.25em;
+              padding: 0.75em 1em;
               background: #007BFF;
               color: #fff;
               text-decoration: none;
@@ -174,7 +161,9 @@ function generateOrderTicket() {
               margin-top: 1em;
               border: none;
               cursor: pointer;
+              font-size: 1em;
             }
+
             .order-id-row {
               display: flex;
               flex-direction: row;
@@ -182,18 +171,46 @@ function generateOrderTicket() {
               justify-content: flex-start;
               gap: 0.5em;
               margin-bottom: 1em;
+              font-size: 1em;
             }
+
             .copy-btn {
-              padding: 0.5em 1em;
-              font-size: 2em;
+              padding: 0.3em 0.6em;
+              font-size: 0.85em;
               border: none;
               background-color: #eee;
               color: #333;
               cursor: pointer;
               border-radius: 4px;
             }
-            pre { white-space: pre-wrap; }
+
+            pre {
+              white-space: pre-wrap;
+              font-size: 0.95em; /* unchanged for better readability */
+            }
+
+            /* 🔧 Mobile font size adjustments */
+            @media (max-width: 600px) {
+              body {
+                font-size: 1.15em;
+              }
+
+              .email-btn {
+                font-size: 1.15em;
+              }
+
+              .order-id-row {
+                font-size: 1.15em;
+              }
+
+              .copy-btn {
+                font-size: 1em;
+              }
+
+              /* pre stays the same size to avoid ugly wrapping */
+            }
           </style>
+
         </head>
         <body>
           <div style="text-align:center;">
