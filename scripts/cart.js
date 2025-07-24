@@ -192,19 +192,22 @@ function generateOrderTicket() {
             /* 🔧 Mobile font size adjustments */
             @media (max-width: 600px) {
               body {
-                font-size: 1.15em;
+                font-size: 1.75em;
               }
 
               .email-btn {
-                font-size: 1.15em;
+                font-size: 2em;
+                border-radius: 10px;
+
               }
 
               .order-id-row {
-                font-size: 1.15em;
+                font-size: 2em;
               }
 
               .copy-btn {
-                font-size: 1em;
+                font-size: 1.75em;
+                border-radius: 10px;
               }
 
               /* pre stays the same size to avoid ugly wrapping */
