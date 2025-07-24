@@ -196,7 +196,7 @@ function generateOrderTicket() {
               }
 
               .email-btn {
-                font-size: 20em;
+                font-size: 1.15em;
               }
 
               .order-id-row {
